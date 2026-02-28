@@ -129,24 +129,34 @@ function sendOrder(){
         return;
     }
 
-    let message = "🔥 *Flame On Restaurant Order* 🔥%0A%0A";
+    let name = document.getElementById("customerName").value;
+    if(name.trim() === ""){
+        alert("Please enter your name!");
+        return;
+    }
+
+    let message = "🔥 Flame On Restaurant Order 🔥\n\n";
+    message += "👤 Customer Name: " + name + "\n\n";
 
     for(let item in cart){
         if(cart[item].qty > 0){
             message += "🍽 " + item + 
                        " x " + cart[item].qty + 
                        " = ₹" + (cart[item].qty * cart[item].price) + 
-                       "%0A";
+                       "\n";
         }
     }
 
-    message += "%0A--------------------%0A";
-    message += "💰 *Total Amount:* ₹" + totalAmount + "%0A%0A";
-    message += "🙏 Thank you for ordering from *Flame On*!%0A";
-    message += "📍 Visit us again!%0A";
+    message += "\n--------------------\n";
+    message += "💰 Total Amount: ₹" + totalAmount + "\n\n";
+    message += "🙏 Thank you for ordering from Flame On!\n";
     message += "📞 9090820969 / 9090691003";
 
-    window.open("https://wa.me/919090820969?text=" + message);
+    let encodedMessage = encodeURIComponent(message);
+
+    window.open("https://wa.me/919090820969?text=" + encodedMessage);
+
+    alert("Thank you for your order! ❤️");
 }
 </script>
 
