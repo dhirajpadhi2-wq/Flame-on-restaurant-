@@ -3,13 +3,119 @@
 <head>
 <title>Cart - Flame On</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+font-family:Arial;
+background:#111;
+color:white;
+margin:0;
+padding:15px;
+}
+h1{
+text-align:center;
+color:#ff4500;
+}
+.item{
+background:#1c1c1c;
+padding:15px;
+margin:10px 0;
+border-radius:10px;
+}
+button{
+background:#ff4500;
+border:none;
+padding:6px 12px;
+color:white;
+border-radius:6px;
+margin-top:8px;
+}
+.total{
+text-align:center;
+font-size:20px;
+margin-top:20px;
+}
+</style>
 </head>
 <body>
 
-<h1>Your Cart</h1>
-<p>Cart system coming soon...</p>
+<h1>🛒 Your Cart</h1>
 
-<a href="index.html">Back Home</a>
+<div id="cartItems"></div>
+
+<div class="total">
+Total: ₹<span id="total">0</span>
+<br><br>
+<button onclick="checkout()">Order on WhatsApp</button>
+<br><br>
+<a href="index.html">
+<button>Back to Menu</button>
+</a>
+</div>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cartData")) || {};
+let totalAmount = 0;
+
+const cartDiv = document.getElementById("cartItems");
+
+// Show Items
+for(let item in cart){
+
+    if(cart[item].qty > 0){
+
+        let subtotal = cart[item].qty * cart[item].price;
+        totalAmount += subtotal;
+
+        const div = document.createElement("div");
+        div.className="item";
+
+        div.innerHTML = `
+            <b>${item}</b><br>
+            Qty: ${cart[item].qty}<br>
+            Price: ₹${cart[item].price}<br>
+            Subtotal: ₹${subtotal}
+            <br>
+            <button onclick="removeItem('${item}')">Remove</button>
+        `;
+
+        cartDiv.appendChild(div);
+    }
+}
+
+document.getElementById("total").innerText = totalAmount;
+
+function removeItem(name){
+    delete cart[name];
+    localStorage.setItem("cartData", JSON.stringify(cart));
+    location.reload();
+}
+
+function checkout(){
+
+    if(Object.keys(cart).length === 0){
+        alert("Cart is empty!");
+        return;
+    }
+
+    let message = "🔥 Flame On Order 🔥\n\n";
+
+    for(let item in cart){
+        if(cart[item].qty > 0){
+            message += item + " x " + cart[item].qty + "\n";
+        }
+    }
+
+    message += "\nTotal: ₹" + totalAmount;
+
+    let phone = "919090820969"; // 🔴 CHANGE THIS TO YOUR NUMBER
+
+    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+}
+
+</script>
 
 </body>
 </html>
