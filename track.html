@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Track Order - Flame On</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+font-family:Arial;
+background:#111;
+color:white;
+padding:20px;
+}
+.order{
+background:#1c1c1c;
+padding:15px;
+margin:10px 0;
+border-radius:10px;
+}
+h1{
+color:#ff4500;
+}
+button{
+background:#ff4500;
+border:none;
+padding:8px 15px;
+color:white;
+border-radius:6px;
+margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<h1>🔥 Track Your Orders</h1>
+
+<div id="orders"></div>
+
+<script>
+let orders = JSON.parse(localStorage.getItem("flameOrders")) || [];
+
+let container = document.getElementById("orders");
+
+if(orders.length === 0){
+    container.innerHTML = "<p>No orders found.</p>";
+}else{
+
+    orders.reverse().forEach(order => {
+
+        let div = document.createElement("div");
+        div.className="order";
+
+        let itemsHTML = "";
+        order.items.forEach(item => {
+            itemsHTML += item.name + " x " + item.qty + "<br>";
+        });
+
+        div.innerHTML = `
+            <b>Order ID:</b> ${order.id}<br>
+            <b>Date:</b> ${order.date}<br>
+            <b>Status:</b> ${order.status}<br>
+            <b>Total:</b> ₹${order.total}<br><br>
+            ${itemsHTML}
+        `;
+
+        container.appendChild(div);
+    });
+}
+</script>
+
+</body>
+</html>
