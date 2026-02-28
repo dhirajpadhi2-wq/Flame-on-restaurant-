@@ -63,6 +63,10 @@ margin-bottom:8px;
 <div class="cart">
 <input type="text" id="customerName" placeholder="Enter Your Name">
 <br>
+
+<input type="tel" id="customerPhone" placeholder="Enter Your Phone Number">
+<br>
+    
 Total: ₹<span id="total">0</span>
 <br><br>
 <button onclick="sendOrder()">Order on WhatsApp</button>
@@ -157,7 +161,13 @@ function sendOrder(){
     }
 
     let name = document.getElementById("customerName").value.trim();
+    
+let phone = document.getElementById("customerPhone").value.trim();
 
+if(phone === ""){
+    alert("Please enter your phone number!");
+    return;
+}
     if(name === ""){
         alert("Please enter your name!");
         return;
@@ -181,6 +191,7 @@ function sendOrder(){
     let orderData = {
         id: orderId,
         customer: name,
+        phone: phone,
         items: orderItems,
         total: totalAmount,
         status: "Pending",
@@ -196,6 +207,7 @@ function sendOrder(){
     let message = "🔥 Flame On Order 🔥\n\n";
     message += "Order ID: " + orderId + "\n";
     message += "Customer: " + name + "\n\n";
+    message += "Phone: " + phone + "\n\n";
 
     orderItems.forEach(item => {
         message += item.name + " x " + item.qty +
