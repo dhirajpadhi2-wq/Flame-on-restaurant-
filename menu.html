@@ -236,10 +236,18 @@ function sendOrder(){
 
     message += "\nTotal: ₹" + totalAmount;
     message += "\n\nThank you for ordering!";
+ 
+    localStorage.setItem("cartData", JSON.stringify(cart));
 
-    window.open("https://wa.me/919090820969?text=" + encodeURIComponent(message));
+let whatsappURL = "https://wa.me/919090820969?text=" + encodeURIComponent(message);
+window.location.href = whatsappURL;
 
-    alert("Order Placed! Your Order ID: " + orderId);
+// ✅ Clear cart after order
+cart = {};
+localStorage.setItem("cartData", JSON.stringify(cart));
+
+alert("Order Placed! Your Order ID: " + orderId);
+location.reload();
 }
 
 </script>
