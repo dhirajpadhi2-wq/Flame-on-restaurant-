@@ -45,6 +45,13 @@ padding:15px;
 text-align:center;
 border-top:2px solid #ff4500;
 }
+input{
+padding:8px;
+border-radius:6px;
+border:none;
+width:80%;
+margin-bottom:8px;
+}
 </style>
 </head>
 <body>
@@ -54,7 +61,7 @@ border-top:2px solid #ff4500;
 <div id="menu"></div>
 
 <div class="cart">
-    <input type="text" id="customerName" placeholder="Enter Your Name" style="padding:8px;border-radius:6px;border:none;width:80%;margin-bottom:8px;">
+<input type="text" id="customerName" placeholder="Enter Your Name">
 <br>
 Total: ₹<span id="total">0</span>
 <br><br>
@@ -62,23 +69,26 @@ Total: ₹<span id="total">0</span>
 </div>
 
 <script>
+
 let cart = {};
 let totalAmount = 0;
 
 fetch("./menu.json")
 .then(res => res.json())
 .then(data => {
+
     const menuDiv = document.getElementById("menu");
 
-    data.forEach(category => {
+    data.forEach((category, catIndex) => {
+
         const catTitle = document.createElement("h2");
         catTitle.textContent = category.category;
         catTitle.style.color="#ff4500";
         menuDiv.appendChild(catTitle);
 
-        category.items.forEach((item, index) => {
+        category.items.forEach((item, itemIndex) => {
 
-            let safeId = "item_" + category.category.replace(/\s/g,'') + "_" + index;
+            let safeId = "item_" + catIndex + "_" + itemIndex;
 
             const div = document.createElement("div");
             div.className="item";
@@ -87,14 +97,22 @@ fetch("./menu.json")
                 <b>${item.name}</b><br>
                 ₹${item.price}
                 <div class="quantity">
-                    <button onclick="changeQty('${safeId}','${item.name}', ${item.price}, -1)">-</button>
+                    <button onclick="changeQty('${safeId}', '${item.name}', ${item.price}, -1)">-</button>
                     <span id="${safeId}">0</span>
-                    <button onclick="changeQty('${safeId}','${item.name}', ${item.price}, 1)">+</button>
+                    <button onclick="changeQty('${safeId}', '${item.name}', ${item.price}, 1)">+</button>
                 </div>
             `;
+
             menuDiv.appendChild(div);
+
         });
+
     });
+
+})
+.catch(error => {
+    alert("Error loading menu.json");
+    console.log(error);
 });
 
 function changeQty(id, name, price, change){
@@ -116,9 +134,11 @@ function changeQty(id, name, price, change){
 
 function calculateTotal(){
     totalAmount = 0;
+
     for(let item in cart){
         totalAmount += cart[item].qty * cart[item].price;
     }
+
     document.getElementById("total").innerText = totalAmount;
 }
 
@@ -129,35 +149,35 @@ function sendOrder(){
         return;
     }
 
-    let name = document.getElementById("customerName").value;
-    if(name.trim() === ""){
+    let name = document.getElementById("customerName").value.trim();
+
+    if(name === ""){
         alert("Please enter your name!");
         return;
     }
 
     let message = "🔥 Flame On Restaurant Order 🔥\n\n";
-    message += "👤 Customer Name: " + name + "\n\n";
+    message += "Customer Name: " + name + "\n\n";
 
     for(let item in cart){
         if(cart[item].qty > 0){
-            message += "🍽 " + item + 
-                       " x " + cart[item].qty + 
-                       " = ₹" + (cart[item].qty * cart[item].price) + 
-                       "\n";
+            message += item + " x " + cart[item].qty +
+                       " = ₹" + (cart[item].qty * cart[item].price) + "\n";
         }
     }
 
-    message += "\n--------------------\n";
-    message += "💰 Total Amount: ₹" + totalAmount + "\n\n";
-    message += "🙏 Thank you for ordering from Flame On!\n";
-    message += "📞 9090820969 / 9090691003";
+    message += "\n-------------------\n";
+    message += "Total Amount: ₹" + totalAmount + "\n\n";
+    message += "Thank you for ordering from Flame On!\n";
+    message += "Call: 9090820969 / 9090691003";
 
     let encodedMessage = encodeURIComponent(message);
 
-    window.open("https://wa.me/919090820969?text=" + encodedMessage);
+    window.open("https://wa.me/919090820969?text=" + encodedMessage, "_blank");
 
-    alert("Thank you for your order! ❤️");
+    alert("Thank you! Your order is being sent to WhatsApp ❤️");
 }
+
 </script>
 
 </body>
