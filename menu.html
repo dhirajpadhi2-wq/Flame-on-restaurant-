@@ -157,11 +157,13 @@ function changeQty(id, name, price, change){
 
     cart[name].qty += change;
 
-    if(cart[name].qty < 0){
+    if(cart[name].qty <= 0){
         cart[name].qty = 0;
+        delete cart[name];
+        document.getElementById(id).innerText = 0;
+    } else {
+        document.getElementById(id).innerText = cart[name].qty;
     }
-
-    document.getElementById(id).innerText = cart[name].qty;
 
     calculateTotal();
 }
@@ -191,9 +193,9 @@ function sendOrder(){
         return;
     }
 
-    if(phone === ""){
-        alert("Please enter your phone number!");
-        return;
+    if(!/^[6-9]\d{9}$/.test(phone)){
+    alert("Enter valid 10 digit phone number!");
+    return;
     }
 
     let orderId = "FO" + Date.now();
@@ -240,13 +242,17 @@ function sendOrder(){
     localStorage.setItem("cartData", JSON.stringify(cart));
 
 let whatsappURL = "https://wa.me/919090820969?text=" + encodeURIComponent(message);
-window.location.href = whatsappURL;
 
-// ✅ Clear cart after order
+ window.open(whatsappURL, "_blank");
+
+// Clear cart after order
 cart = {};
-localStorage.setItem("cartData", JSON.stringify(cart));
+totalAmount = 0;
+document.getElementById("total").innerText = 0;
 
 alert("Order Placed! Your Order ID: " + orderId);
+
+// Optional: reload page to reset quantities visually
 location.reload();
 }
 
