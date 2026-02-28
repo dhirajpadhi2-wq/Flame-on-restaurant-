@@ -41,11 +41,21 @@ margin-top:20px;
 <h1>🛒 Your Cart</h1>
 
 <div id="cartItems"></div>
-
+<div style="text-align:center;margin-top:20px;">
+<input type="text" id="customerName" placeholder="Enter Your Name" 
+style="padding:8px;width:80%;margin-bottom:10px;border-radius:6px;border:none;">
+<br>
+<input type="tel" id="customerPhone" placeholder="Enter Your Phone Number" 
+style="padding:8px;width:80%;margin-bottom:10px;border-radius:6px;border:none;">
+</div>
+    
 <div class="total">
 Total: ₹<span id="total">0</span>
 <br><br>
 <button onclick="checkout()">Order on WhatsApp</button>
+    <br><br>
+<button onclick="clearCart()">Clear Cart</button>
+    
 <br><br>
 <a href="index.html">
 <button>Back to Menu</button>
@@ -58,6 +68,10 @@ let cart = JSON.parse(localStorage.getItem("cartData")) || {};
 let totalAmount = 0;
 
 const cartDiv = document.getElementById("cartItems");
+   
+    if(Object.keys(cart).length === 0){
+    cartDiv.innerHTML = "<p style='text-align:center;margin-top:20px;'>Your cart is empty 😔</p>";
+    }
 
 // Show Items
 for(let item in cart){
@@ -90,7 +104,12 @@ function removeItem(name){
     localStorage.setItem("cartData", JSON.stringify(cart));
     location.reload();
 }
-
+    
+function clearCart(){
+    localStorage.removeItem("cartData");
+    location.reload();
+}
+    
 function checkout(){
 
     if(Object.keys(cart).length === 0){
@@ -98,7 +117,17 @@ function checkout(){
         return;
     }
 
+    let name = document.getElementById("customerName").value;
+    let phoneInput = document.getElementById("customerPhone").value;
+
+    if(!name || !phoneInput){
+        alert("Please enter your name and phone number");
+        return;
+    }
+
     let message = "🔥 Flame On Order 🔥\n\n";
+    message += "Customer Name: " + name + "\n";
+    message += "Customer Phone: " + phoneInput + "\n\n";
 
     for(let item in cart){
         if(cart[item].qty > 0){
@@ -108,13 +137,13 @@ function checkout(){
 
     message += "\nTotal: ₹" + totalAmount;
 
-    let phone = "919090820969"; // 🔴 CHANGE THIS TO YOUR NUMBER
+    let phone = "919090820969";
 
     let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
     window.open(url, "_blank");
 }
-
+    
 </script>
 
 </body>
