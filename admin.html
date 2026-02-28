@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Flame On Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+font-family:Arial;
+background:#111;
+color:white;
+margin:0;
+padding:15px;
+}
+h1{
+text-align:center;
+color:#ff4500;
+}
+.order{
+background:#1c1c1c;
+padding:15px;
+margin:15px 0;
+border-radius:10px;
+}
+button{
+background:#ff4500;
+border:none;
+padding:6px 12px;
+color:white;
+border-radius:6px;
+margin:5px 5px 0 0;
+}
+select{
+padding:5px;
+border-radius:5px;
+}
+.clearBtn{
+background:red;
+}
+</style>
+</head>
+<body>
+
+<h1>🔥 Admin Panel - Flame On 🔥</h1>
+
+<div id="orders"></div>
+
+<button class="clearBtn" onclick="clearAll()">Clear All Orders</button>
+
+<script>
+
+let orders = JSON.parse(localStorage.getItem("flameOrders")) || [];
+
+const ordersDiv = document.getElementById("orders");
+
+if(orders.length === 0){
+    ordersDiv.innerHTML = "<h3>No Orders Yet</h3>";
+}else{
+    orders.forEach((order, index) => {
+
+        let div = document.createElement("div");
+        div.className = "order";
+
+        let itemsList = "";
+        order.items.forEach(item=>{
+            itemsList += item.name + " x " + item.qty + 
+            " = ₹" + (item.qty * item.price) + "<br>";
+        });
+
+        div.innerHTML = `
+            <b>Order ID:</b> ${order.id} <br>
+            <b>Customer:</b> ${order.customer} <br>
+            <b>Phone:</b> ${order.phone} <br>
+            <b>Date:</b> ${order.date} <br><br>
+            <b>Items:</b><br>${itemsList}<br>
+            <b>Total:</b> ₹${order.total} <br><br>
+
+            <b>Status:</b>
+            <select onchange="updateStatus(${index}, this.value)">
+                <option ${order.status==="Pending"?"selected":""}>Pending</option>
+                <option ${order.status==="Preparing"?"selected":""}>Preparing</option>
+                <option ${order.status==="Out for Delivery"?"selected":""}>Out for Delivery</option>
+                <option ${order.status==="Delivered"?"selected":""}>Delivered</option>
+            </select>
+            <br>
+
+            <button onclick="deleteOrder(${index})">Delete</button>
+        `;
+
+        ordersDiv.appendChild(div);
+    });
+}
+
+function updateStatus(index, newStatus){
+    orders[index].status = newStatus;
+    localStorage.setItem("flameOrders", JSON.stringify(orders));
+    alert("Status Updated!");
+}
+
+function deleteOrder(index){
+    if(confirm("Delete this order?")){
+        orders.splice(index,1);
+        localStorage.setItem("flameOrders", JSON.stringify(orders));
+        location.reload();
+    }
+}
+
+function clearAll(){
+    if(confirm("Clear ALL orders?")){
+        localStorage.removeItem("flameOrders");
+        location.reload();
+    }
+}
+
+</script>
+
+</body>
+</html>
