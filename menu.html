@@ -16,33 +16,37 @@ padding:15px;
 background:#000;
 color:#ff4500;
 }
-#search{
-width:90%;
-padding:10px;
-margin:10px auto;
-display:block;
-border-radius:20px;
-border:none;
-}
-.category-title{
-color:#ff4500;
-margin-left:15px;
+#menu{
+padding-bottom:120px;
 }
 .item{
 background:#1c1c1c;
 margin:10px;
 padding:15px;
 border-radius:12px;
-display:flex;
-justify-content:space-between;
-align-items:center;
 }
 button{
 background:#ff4500;
 border:none;
-padding:8px 15px;
+padding:5px 10px;
 color:white;
-border-radius:20px;
+border-radius:5px;
+margin:2px;
+}
+.quantity{
+display:flex;
+align-items:center;
+gap:5px;
+margin-top:8px;
+}
+.cart{
+position:fixed;
+bottom:0;
+width:100%;
+background:#000;
+padding:15px;
+text-align:center;
+border-top:2px solid #ff4500;
 }
 </style>
 </head>
@@ -50,59 +54,86 @@ border-radius:20px;
 
 <h1>🔥 Flame On Menu 🔥</h1>
 
-<input type="text" id="search" placeholder="Search food..." onkeyup="filterMenu()">
-
 <div id="menu"></div>
 
+<div class="cart">
+Total: ₹<span id="total">0</span>
+<br><br>
+<button onclick="sendOrder()">Order on WhatsApp</button>
+</div>
+
 <script>
-let fullData = [];
+let cart = {};
+let totalAmount = 0;
 
 fetch("./menu.json")
 .then(res => res.json())
 .then(data => {
-    fullData = data;
-    displayMenu(data);
-});
-
-function displayMenu(data){
     const menuDiv = document.getElementById("menu");
-    menuDiv.innerHTML = "";
 
     data.forEach(category => {
         const catTitle = document.createElement("h2");
-        catTitle.className = "category-title";
         catTitle.textContent = category.category;
+        catTitle.style.color="#ff4500";
         menuDiv.appendChild(catTitle);
 
         category.items.forEach(item => {
             const div = document.createElement("div");
-            div.className = "item";
+            div.className="item";
+
             div.innerHTML = `
-                <span>${item.name} - ₹${item.price}</span>
-                <button onclick="order('${item.name}')">Order</button>
+                <b>${item.name}</b><br>
+                ₹${item.price}
+                <div class="quantity">
+                    <button onclick="changeQty('${item.name}', ${item.price}, -1)">-</button>
+                    <span id="${item.name}">0</span>
+                    <button onclick="changeQty('${item.name}', ${item.price}, 1)">+</button>
+                </div>
             `;
             menuDiv.appendChild(div);
         });
     });
+});
+
+function changeQty(name, price, change){
+    if(!cart[name]){
+        cart[name] = {qty:0, price:price};
+    }
+
+    cart[name].qty += change;
+
+    if(cart[name].qty < 0){
+        cart[name].qty = 0;
+    }
+
+    document.getElementById(name).innerText = cart[name].qty;
+
+    calculateTotal();
 }
 
-function filterMenu(){
-    const searchValue = document.getElementById("search").value.toLowerCase();
-
-    const filtered = fullData.map(category => {
-        return {
-            category: category.category,
-            items: category.items.filter(item =>
-                item.name.toLowerCase().includes(searchValue)
-            )
-        };
-    }).filter(category => category.items.length > 0);
-
-    displayMenu(filtered);
+function calculateTotal(){
+    totalAmount = 0;
+    for(let item in cart){
+        totalAmount += cart[item].qty * cart[item].price;
+    }
+    document.getElementById("total").innerText = totalAmount;
 }
 
-function order(item){
-    window.open("https://wa.me/919090820969?text=I want to order " + item);
+function sendOrder(){
+    if(totalAmount === 0){
+        alert("Please select items first!");
+        return;
+    }
+
+    let message = "🔥 Flame On Order:%0A%0A";
+    for(let item in cart){
+        if(cart[item].qty > 0){
+            message += item + " x " + cart[item].qty + "%0A";
+        }
+    }
+    message += "%0ATotal: ₹" + totalAmount;
+
+    window.open("https://wa.me/919090820969?text=" + message);
 }
 </script>
 
