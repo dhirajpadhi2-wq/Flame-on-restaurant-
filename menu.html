@@ -156,26 +156,51 @@ function sendOrder(){
         return;
     }
 
-    let message = "🔥 Flame On Restaurant Order 🔥\n\n";
-    message += "Customer Name: " + name + "\n\n";
+    // Generate Order ID
+    let orderId = "FO" + Date.now();
+
+    let orderItems = [];
 
     for(let item in cart){
         if(cart[item].qty > 0){
-            message += item + " x " + cart[item].qty +
-                       " = ₹" + (cart[item].qty * cart[item].price) + "\n";
+            orderItems.push({
+                name: item,
+                qty: cart[item].qty,
+                price: cart[item].price
+            });
         }
     }
 
-    message += "\n-------------------\n";
-    message += "Total Amount: ₹" + totalAmount + "\n\n";
-    message += "Thank you for ordering from Flame On!\n";
-    message += "Call: 9090820969 / 9090691003";
+    let orderData = {
+        id: orderId,
+        customer: name,
+        items: orderItems,
+        total: totalAmount,
+        status: "Pending",
+        date: new Date().toLocaleString()
+    };
 
-    let encodedMessage = encodeURIComponent(message);
+    // Save to Local Storage
+    let orders = JSON.parse(localStorage.getItem("flameOrders")) || [];
+    orders.push(orderData);
+    localStorage.setItem("flameOrders", JSON.stringify(orders));
 
-    window.open("https://wa.me/919090820969?text=" + encodedMessage, "_blank");
+    // WhatsApp Message
+    let message = "🔥 Flame On Order 🔥\n\n";
+    message += "Order ID: " + orderId + "\n";
+    message += "Customer: " + name + "\n\n";
 
-    alert("Thank you! Your order is being sent to WhatsApp ❤️");
+    orderItems.forEach(item => {
+        message += item.name + " x " + item.qty +
+                   " = ₹" + (item.qty * item.price) + "\n";
+    });
+
+    message += "\nTotal: ₹" + totalAmount;
+    message += "\n\nThank you for ordering!";
+
+    window.open("https://wa.me/919090820969?text=" + encodeURIComponent(message));
+
+    alert("Order Placed! Your Order ID: " + orderId);
 }
 
 </script>
