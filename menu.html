@@ -4,53 +4,51 @@
 <title>Menu - Flame On</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{
-font-family:Arial;
-background:#111;
-color:white;
-text-align:center;
-}
+body{font-family:Arial;background:#111;color:white;}
+h1{text-align:center;color:#ff4500;}
+.category{margin:20px;}
 .item{
 background:#1c1c1c;
-margin:20px;
-padding:20px;
-border-radius:15px;
-box-shadow:0 0 10px rgba(255,69,0,0.5);
+margin:10px;
+padding:15px;
+border-radius:10px;
 }
 button{
-padding:10px 20px;
 background:#ff4500;
 color:white;
 border:none;
+padding:8px 15px;
 border-radius:20px;
 }
-a{color:#ff4500;text-decoration:none;}
 </style>
 </head>
 <body>
 
-<h1>🔥 Our Menu 🔥</h1>
-<div id="menu-container"></div>
-
-<br>
-<a href="index.html">⬅ Back Home</a>
+<h1>🔥 Flame On Menu 🔥</h1>
+<div id="menu"></div>
 
 <script>
 fetch("menu.json")
-.then(response => response.json())
+.then(res => res.json())
 .then(data => {
-    const container = document.getElementById("menu-container");
+    const menuDiv = document.getElementById("menu");
 
-    data.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "item";
+    data.forEach(category => {
+        const catDiv = document.createElement("div");
+        catDiv.className = "category";
+        catDiv.innerHTML = `<h2>${category.category}</h2>`;
 
-        div.innerHTML = `
-            <h3>${item.name} - ₹${item.price}</h3>
-            <button onclick="order('${item.name}')">Order Now</button>
-        `;
+        category.items.forEach(item => {
+            const itemDiv = document.createElement("div");
+            itemDiv.className = "item";
+            itemDiv.innerHTML = `
+                <h3>${item.name} - ₹${item.price}</h3>
+                <button onclick="order('${item.name}')">Order Now</button>
+            `;
+            catDiv.appendChild(itemDiv);
+        });
 
-        container.appendChild(div);
+        menuDiv.appendChild(catDiv);
     });
 });
 
