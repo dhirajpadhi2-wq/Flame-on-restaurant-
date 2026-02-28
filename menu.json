@@ -1,22 +1,52 @@
 [
-  {
-    "name": "Chicken Biryani",
-    "price": 150
-  },
-  {
-    "name": "Paneer Butter Masala",
-    "price": 180
-  },
-  {
-    "name": "Fried Rice",
-    "price": 120
-  },
-  {
-    "name": "Tandoori Chicken",
-    "price": 220
-  },
-  {
-    "name": "Veg Noodles",
-    "price": 110
-  }
+{
+  "category": "Starters - Veg",
+  "items": [
+    {"name": "Crispy Corn", "price": 120},
+    {"name": "Crispy Chilly Babycorn", "price": 150},
+    {"name": "Corn Salt & Pepper", "price": 150},
+    {"name": "Mushroom Salt & Pepper", "price": 150},
+    {"name": "Paneer Salt & Pepper", "price": 150},
+    {"name": "Paneer Singpuri Stick", "price": 170},
+    {"name": "Paneer Pakoda", "price": 100},
+    {"name": "Paneer Takatak", "price": 150},
+    {"name": "Mushroom Pakoda", "price": 100},
+    {"name": "Veg Finger", "price": 80},
+    {"name": "Potato Bytes", "price": 70},
+    {"name": "French Fries", "price": 60},
+    {"name": "Cheese Balls", "price": 80},
+    {"name": "Veg Cutlet", "price": 80}
+  ]
+},
+{
+  "category": "Starters - Non Veg",
+  "items": [
+    {"name": "Crispy Chicken Wings (4pcs)", "price": 100},
+    {"name": "Chicken Popcorn", "price": 100},
+    {"name": "Chicken Lollipop (4pcs)", "price": 120},
+    {"name": "Chicken 65 (Half)", "price": 140},
+    {"name": "Chicken Singapuri Stick", "price": 170},
+    {"name": "Sauce Tossed Chicken", "price": 200},
+    {"name": "Chicken Pakoda (Half)", "price": 60},
+    {"name": "Crispy Prawn", "price": 200},
+    {"name": "Prawn 65 (Half)", "price": 250},
+    {"name": "Schezwan Prawn (Half)", "price": 250},
+    {"name": "Schezwan Chicken (Half)", "price": 170},
+    {"name": "Chicken Nuggets (6pcs)", "price": 80},
+    {"name": "Chicken Salt & Pepper (Half)", "price": 150},
+    {"name": "Chicken Cutlet (2pcs)", "price": 100},
+    {"name": "Fish Finger (6pcs)", "price": 220},
+    {"name": "Chicken Barbeque Wings", "price": 200}
+  ]
+},
+{
+  "category": "Burger",
+  "items": [
+    {"name": "Veg Patty Burger", "price": 70},
+    {"name": "Cheese Patty Burger", "price": 80},
+    {"name": "Crispy Chicken Burger", "price": 80},
+    {"name": "Chicken Patty Burger", "price": 80},
+    {"name": "Double Cheese Chicken Burger", "price": 90}
+  ]
+}
 ]
