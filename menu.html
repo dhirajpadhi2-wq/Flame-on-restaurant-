@@ -4,7 +4,12 @@
 <title>Menu - Flame On</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{font-family:Arial;background:#111;color:white;text-align:center;}
+body{
+font-family:Arial;
+background:#111;
+color:white;
+text-align:center;
+}
 .item{
 background:#1c1c1c;
 margin:20px;
@@ -21,33 +26,38 @@ border-radius:20px;
 }
 a{color:#ff4500;text-decoration:none;}
 </style>
-<script>
-function order(item){
-window.open("https://wa.me/919090820969?text=I want to order "+item);
-}
-</script>
 </head>
 <body>
 
 <h1>🔥 Our Menu 🔥</h1>
-
-<div class="item">
-<h3>Chicken Biryani - ₹150</h3>
-<button onclick="order('Chicken Biryani')">Order Now</button>
-</div>
-
-<div class="item">
-<h3>Paneer Butter Masala - ₹180</h3>
-<button onclick="order('Paneer Butter Masala')">Order Now</button>
-</div>
-
-<div class="item">
-<h3>Fried Rice - ₹120</h3>
-<button onclick="order('Fried Rice')">Order Now</button>
-</div>
+<div id="menu-container"></div>
 
 <br>
 <a href="index.html">⬅ Back Home</a>
+
+<script>
+fetch("menu.json")
+.then(response => response.json())
+.then(data => {
+    const container = document.getElementById("menu-container");
+
+    data.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "item";
+
+        div.innerHTML = `
+            <h3>${item.name} - ₹${item.price}</h3>
+            <button onclick="order('${item.name}')">Order Now</button>
+        `;
+
+        container.appendChild(div);
+    });
+});
+
+function order(item){
+    window.open("https://wa.me/919090820969?text=I want to order " + item);
+}
+</script>
 
 </body>
 </html>
