@@ -49,4 +49,94 @@
     {"name": "Double Cheese Chicken Burger", "price": 90}
   ]
 }
-]
+,
+{
+  "category": "Sandwich",
+  "items": [
+    {"name": "Veg Sandwich", "price": 70},
+    {"name": "Cheese Mix Veg Sandwich", "price": 80},
+    {"name": "Chicken Sandwich", "price": 70},
+    {"name": "Cheese Chicken Sandwich", "price": 80}
+  ]
+},
+{
+  "category": "Pizza",
+  "items": [
+    {"name": "Veg Pizza (Small)", "price": 150},
+    {"name": "Veg Pizza (Medium)", "price": 250},
+    {"name": "Veg Pizza (Large)", "price": 350},
+    {"name": "Nonveg Pizza (Small)", "price": 150},
+    {"name": "Nonveg Pizza (Medium)", "price": 250},
+    {"name": "Nonveg Pizza (Large)", "price": 350}
+  ]
+},
+{
+  "category": "Momo",
+  "items": [
+    {"name": "Veg Momo", "price": 50},
+    {"name": "Non-Veg Momo", "price": 60},
+    {"name": "Fried Veg Momo", "price": 60},
+    {"name": "Non-Veg Fried Momo", "price": 70},
+    {"name": "Pan Fried Momo", "price": 80}
+  ]
+},
+{
+  "category": "Noodles & Pasta - Veg",
+  "items": [
+    {"name": "Mix Veg Noodles", "price": 80},
+    {"name": "Paneer Noodles", "price": 80},
+    {"name": "Mushroom Noodles", "price": 80},
+    {"name": "Schezwan Noodles", "price": 90},
+    {"name": "Chilly Garlic Noodles", "price": 100},
+    {"name": "Chawmin", "price": 80},
+    {"name": "White Sauce Pasta", "price": 120},
+    {"name": "Red Sauce Pasta", "price": 120}
+  ]
+},
+{
+  "category": "Noodles & Pasta - Non Veg",
+  "items": [
+    {"name": "Egg Chicken Noodles", "price": 80},
+    {"name": "Egg Noodles", "price": 70},
+    {"name": "Chicken Noodles", "price": 70},
+    {"name": "Chilly Garlic Noodles", "price": 100},
+    {"name": "Schezwan Noodles", "price": 100},
+    {"name": "Prawn Mix Noodles", "price": 120},
+    {"name": "Chawmin", "price": 80},
+    {"name": "White Sauce Pasta", "price": 120},
+    {"name": "Red Sauce Pasta", "price": 120}
+  ]
+},
+{
+  "category": "Tandoor & Kababs - Veg",
+  "items": [
+    {"name": "Paneer Tikka", "price": 150},
+    {"name": "Tandoori Mushroom", "price": 120}
+  ]
+},
+{
+  "category": "Tandoor & Kababs - Non Veg",
+  "items": [
+    {"name": "Full Leg Tandoor (1pcs)", "price": 140},
+    {"name": "Whole Chicken Tandoor", "price": 450},
+    {"name": "Malai Chicken Tikka", "price": 120},
+    {"name": "Hariyali Chicken Tikka", "price": 120},
+    {"name": "Chicken Tikka", "price": 100},
+    {"name": "Tangdi Kabab (2pcs)", "price": 170},
+    {"name": "Chicken Seekh Kabab", "price": 170},
+    {"name": "Mutton Seekh Kabab", "price": 250},
+    {"name": "Tandoori Prawn", "price": 250},
+    {"name": "Fish Tikka", "price": 200}
+  ]
+},
+{
+  "category": "Papad & Salad",
+  "items": [
+    {"name": "Masala Papad", "price": 40},
+    {"name": "Fried Papad", "price": 20},
+    {"name": "Roasted Papad", "price": 20},
+    {"name": "Green Salad", "price": 30},
+    {"name": "Dahi Salad", "price": 40},
+    {"name": "Dahi Raita", "price": 30}
+  ]
+}
