@@ -1,1 +1,22 @@
-
+[
+  {
+    "name": "Chicken Biryani",
+    "price": 150
+  },
+  {
+    "name": "Paneer Butter Masala",
+    "price": 180
+  },
+  {
+    "name": "Fried Rice",
+    "price": 120
+  },
+  {
+    "name": "Tandoori Chicken",
+    "price": 220
+  },
+  {
+    "name": "Veg Noodles",
+    "price": 110
+  }
+]
