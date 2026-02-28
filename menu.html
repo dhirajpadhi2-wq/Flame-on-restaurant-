@@ -16,9 +16,6 @@ padding:15px;
 background:#000;
 color:#ff4500;
 }
-#menu{
-padding-bottom:120px;
-}
 .item{
 background:#1c1c1c;
 margin:10px;
@@ -28,15 +25,15 @@ border-radius:12px;
 button{
 background:#ff4500;
 border:none;
-padding:5px 10px;
+padding:6px 12px;
 color:white;
-border-radius:5px;
-margin:2px;
+border-radius:6px;
+margin:3px;
 }
 .quantity{
 display:flex;
 align-items:center;
-gap:5px;
+gap:8px;
 margin-top:8px;
 }
 .cart{
@@ -77,7 +74,10 @@ fetch("./menu.json")
         catTitle.style.color="#ff4500";
         menuDiv.appendChild(catTitle);
 
-        category.items.forEach(item => {
+        category.items.forEach((item, index) => {
+
+            let safeId = "item_" + category.category.replace(/\s/g,'') + "_" + index;
+
             const div = document.createElement("div");
             div.className="item";
 
@@ -85,9 +85,9 @@ fetch("./menu.json")
                 <b>${item.name}</b><br>
                 ₹${item.price}
                 <div class="quantity">
-                    <button onclick="changeQty('${item.name}', ${item.price}, -1)">-</button>
-                    <span id="${item.name}">0</span>
-                    <button onclick="changeQty('${item.name}', ${item.price}, 1)">+</button>
+                    <button onclick="changeQty('${safeId}','${item.name}', ${item.price}, -1)">-</button>
+                    <span id="${safeId}">0</span>
+                    <button onclick="changeQty('${safeId}','${item.name}', ${item.price}, 1)">+</button>
                 </div>
             `;
             menuDiv.appendChild(div);
@@ -95,7 +95,8 @@ fetch("./menu.json")
     });
 });
 
-function changeQty(name, price, change){
+function changeQty(id, name, price, change){
+
     if(!cart[name]){
         cart[name] = {qty:0, price:price};
     }
@@ -106,7 +107,7 @@ function changeQty(name, price, change){
         cart[name].qty = 0;
     }
 
-    document.getElementById(name).innerText = cart[name].qty;
+    document.getElementById(id).innerText = cart[name].qty;
 
     calculateTotal();
 }
@@ -120,17 +121,20 @@ function calculateTotal(){
 }
 
 function sendOrder(){
+
     if(totalAmount === 0){
         alert("Please select items first!");
         return;
     }
 
     let message = "🔥 Flame On Order:%0A%0A";
+
     for(let item in cart){
         if(cart[item].qty > 0){
             message += item + " x " + cart[item].qty + "%0A";
         }
     }
+
     message += "%0ATotal: ₹" + totalAmount;
 
     window.open("https://wa.me/919090820969?text=" + message);
