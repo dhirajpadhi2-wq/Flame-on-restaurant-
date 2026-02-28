@@ -168,12 +168,7 @@ function changeQty(id, name, price, change){
 
 function calculateTotal(){
     totalAmount = 0;
-for(let item in cart){
-        totalAmount += cart[item].qty * cart[item].price;
-    }
 
-    document.getElementById("total").innerText = totalAmount;
-}
     for(let item in cart){
         totalAmount += cart[item].qty * cart[item].price;
     }
