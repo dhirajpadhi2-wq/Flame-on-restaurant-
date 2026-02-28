@@ -48,8 +48,7 @@
     {"name": "Chicken Patty Burger", "price": 80},
     {"name": "Double Cheese Chicken Burger", "price": 90}
   ]
-}
-,
+},
 {
   "category": "Sandwich",
   "items": [
@@ -139,4 +138,179 @@
     {"name": "Dahi Salad", "price": 40},
     {"name": "Dahi Raita", "price": 30}
   ]
+},
+{
+  "category": "Biryani Special",
+  "items": [
+    {"name": "Special Chicken Biryani", "price": 150},
+    {"name": "Chicken Biryani (Half)", "price": 120},
+    {"name": "Chicken Tikka Biryani (Half)", "price": 150},
+    {"name": "Tandoor Chicken Biryani", "price": 200},
+    {"name": "Egg Biryani", "price": 100},
+    {"name": "Prawn Biryani", "price": 200},
+    {"name": "Mutton Biryani", "price": 250},
+    {"name": "Fish Biryani", "price": 120},
+    {"name": "Veg Biryani", "price": 100}
+  ]
+},
+{
+  "category": "Wrap & Rolls - Veg",
+  "items": [
+    {"name": "Mix Veg Roll", "price": 80},
+    {"name": "Chilly Paneer Roll", "price": 100},
+    {"name": "Chilly Mushroom Roll", "price": 100},
+    {"name": "Veg Spring Roll", "price": 50}
+  ]
+},
+{
+  "category": "Wrap & Rolls - Non Veg",
+  "items": [
+    {"name": "Egg Chicken Roll", "price": 80},
+    {"name": "Egg Roll", "price": 70},
+    {"name": "Healthy Egg Chicken Wrap", "price": 120},
+    {"name": "Chicken Spring Roll", "price": 60}
+  ]
+},
+{
+  "category": "Roti & Tandoori",
+  "items": [
+    {"name": "Tawa Roti (1pcs)", "price": 7},
+    {"name": "Plain Paratha (1pcs)", "price": 15},
+    {"name": "Lachha Paratha (1pcs)", "price": 25},
+    {"name": "Aloo Paratha (1pcs)", "price": 30},
+    {"name": "Paneer Paratha (1pcs)", "price": 40},
+    {"name": "Tandoor Roti (1pcs)", "price": 15},
+    {"name": "Butter Tandoor Roti (1pcs)", "price": 20},
+    {"name": "Plain Nan (1pcs)", "price": 20},
+    {"name": "Butter Nan (1pcs)", "price": 25},
+    {"name": "Garlic Nan (1pcs)", "price": 40},
+    {"name": "Coriander Nan (1pcs)", "price": 30},
+    {"name": "Masala Nan (1pcs)", "price": 40},
+    {"name": "Masala Kulcha (1pcs)", "price": 50},
+    {"name": "Special Egg Chicken Moghlai Paratha", "price": 150},
+    {"name": "Special Mutton Keema Moghlai Paratha", "price": 180}
+  ]
+},
+{
+  "category": "Rice",
+  "items": [
+    {"name": "Plain Rice", "price": 30},
+    {"name": "Zeera Rice", "price": 60},
+    {"name": "Fried Rice", "price": 80},
+    {"name": "Veg Pulao", "price": 120},
+    {"name": "Veg Mixed Fried Rice", "price": 100},
+    {"name": "Egg Chicken Fried Rice", "price": 120},
+    {"name": "Prawn Mixed Fried Rice", "price": 150}
+  ]
+},
+{
+  "category": "Dal",
+  "items": [
+    {"name": "Plain Dal", "price": 30},
+    {"name": "Dal Fry", "price": 50},
+    {"name": "Dal Tadka", "price": 80},
+    {"name": "Dal Makhni", "price": 100},
+    {"name": "Dal Egg Tadka", "price": 100}
+  ]
+},
+{
+  "category": "Indian Veg Curries",
+  "items": [
+    {"name": "Mix Veg (Half)", "price": 100},
+    {"name": "Navaratna (Half)", "price": 150},
+    {"name": "Kadai Veg (Half)", "price": 120},
+    {"name": "Matar Paneer (Half)", "price": 140},
+    {"name": "Methi Paneer (Half)", "price": 170},
+    {"name": "Kaju Paneer (Half)", "price": 180},
+    {"name": "Paneer Masala (Half)", "price": 120},
+    {"name": "Paneer Butter Masala (Half)", "price": 150},
+    {"name": "Paneer Hyderabadi (Half)", "price": 160},
+    {"name": "Paneer Dopyaja (Half)", "price": 160},
+    {"name": "Kadai Paneer (Half)", "price": 150},
+    {"name": "Paneer Lababdar (Half)", "price": 170},
+    {"name": "Paneer Bhurji (Half)", "price": 150},
+    {"name": "Paneer Bharta (Half)", "price": 160},
+    {"name": "Paneer Kofta (Half)", "price": 170},
+    {"name": "Paneer Tikka Masala (Half)", "price": 180},
+    {"name": "Palak Paneer (Half)", "price": 160},
+    {"name": "Mushroom Rai (Half)", "price": 120},
+    {"name": "Mushroom Masala (Half)", "price": 120},
+    {"name": "Mushroom Dopyaja (Half)", "price": 160},
+    {"name": "Mushroom Butter Masala (Half)", "price": 150},
+    {"name": "Mushroom Mattar Masala (Half)", "price": 140},
+    {"name": "Mushroom Hyderabadi (Half)", "price": 150},
+    {"name": "Kadai Mushroom (Half)", "price": 150}
+  ]
+},
+{
+  "category": "Indian Non Veg",
+  "items": [
+    {"name": "Chicken Butter Masala", "price": 150},
+    {"name": "Chicken Hyderabadi", "price": 160},
+    {"name": "Chicken Dopyaja", "price": 160},
+    {"name": "Kadai Chicken", "price": 150},
+    {"name": "Chicken Lababdar", "price": 170},
+    {"name": "Masala Chicken", "price": 120},
+    {"name": "Chicken Moghlai", "price": 170},
+    {"name": "Punjabi Chicken", "price": 160},
+    {"name": "Tandoor Butter Chicken", "price": 180},
+    {"name": "Fish Tawa Fry", "price": 60},
+    {"name": "Fish Masala Fry", "price": 80},
+    {"name": "Elishi Fish Besara", "price": 200},
+    {"name": "Prawn Curry", "price": 200},
+    {"name": "Prawn Malai Curry", "price": 250},
+    {"name": "Mutton Kassa", "price": 180},
+    {"name": "Mutton Curry", "price": 180}
+  ]
+},
+{
+  "category": "Chinese - Veg",
+  "items": [
+    {"name": "Chilly Paneer", "price": 120},
+    {"name": "Schezwan Paneer", "price": 170},
+    {"name": "Paneer Manchurian", "price": 150},
+    {"name": "Chilly Mushroom", "price": 120},
+    {"name": "Hot Garlic Paneer", "price": 170},
+    {"name": "Mushroom Manchurian", "price": 150},
+    {"name": "Veg Manchurian", "price": 100},
+    {"name": "Creamy Garlic Mushroom", "price": 150},
+    {"name": "Chilly Kobi", "price": 100}
+  ]
+},
+{
+  "category": "Chinese - Non Veg",
+  "items": [
+    {"name": "Chilly Chicken", "price": 120},
+    {"name": "Chilly Prawn", "price": 200},
+    {"name": "Chilly Fish", "price": 150},
+    {"name": "Chicken Manchurian", "price": 150},
+    {"name": "Garlic Chicken", "price": 150},
+    {"name": "Hot Garlic Chicken", "price": 170},
+    {"name": "Prawn Manchurian", "price": 250},
+    {"name": "Schezwan Chicken", "price": 170},
+    {"name": "Schezwan Prawn", "price": 250}
+  ]
+},
+{
+  "category": "Soups",
+  "items": [
+    {"name": "Veg Soup", "price": 70},
+    {"name": "Non Veg Soup", "price": 80}
+  ]
+},
+{
+  "category": "Beverages",
+  "items": [
+    {"name": "Hot Tea", "price": 15},
+    {"name": "Hot Coffee", "price": 40},
+    {"name": "Masala Drink", "price": 40},
+    {"name": "Fresh Lime Soda", "price": 40},
+    {"name": "Blue Lagoon Mojito", "price": 60},
+    {"name": "Green Apple Mojito", "price": 60},
+    {"name": "Mint Mojito", "price": 60},
+    {"name": "Plain Cold Drinks", "price": 30},
+    {"name": "Cold Coffee", "price": 70},
+    {"name": "Chocolate Shake", "price": 80}
+  ]
 }
+]
