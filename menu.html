@@ -21,6 +21,13 @@ background:#1c1c1c;
 margin:10px;
 padding:15px;
 border-radius:12px;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+animation: fadeIn 0.5s ease;
+}
+
+.item:hover{
+transform: scale(1.04);
+box-shadow: 0 8px 20px rgba(255,69,0,0.4);
 }
 button{
 background:#ff4500;
@@ -29,6 +36,12 @@ padding:6px 12px;
 color:white;
 border-radius:6px;
 margin:3px;
+transition: all 0.3s ease;
+}
+
+button:hover{
+transform: scale(1.1);
+box-shadow: 0 5px 15px rgba(255,69,0,0.5);
 }
 .quantity{
 display:flex;
@@ -52,6 +65,16 @@ border:none;
 width:80%;
 margin-bottom:8px;
 }
+ @keyframes fadeIn{
+from{
+opacity:0;
+transform: translateY(10px);
+}
+to{
+opacity:1;
+transform: translateY(0);
+}
+    }
 </style>
 </head>
 <body>
@@ -145,7 +168,12 @@ function changeQty(id, name, price, change){
 
 function calculateTotal(){
     totalAmount = 0;
+for(let item in cart){
+        totalAmount += cart[item].qty * cart[item].price;
+    }
 
+    document.getElementById("total").innerText = totalAmount;
+}
     for(let item in cart){
         totalAmount += cart[item].qty * cart[item].price;
     }
@@ -161,19 +189,18 @@ function sendOrder(){
     }
 
     let name = document.getElementById("customerName").value.trim();
-    
-let phone = document.getElementById("customerPhone").value.trim();
+    let phone = document.getElementById("customerPhone").value.trim();
 
-if(phone === ""){
-    alert("Please enter your phone number!");
-    return;
-}
     if(name === ""){
         alert("Please enter your name!");
         return;
     }
 
-    // Generate Order ID
+    if(phone === ""){
+        alert("Please enter your phone number!");
+        return;
+    }
+
     let orderId = "FO" + Date.now();
 
     let orderItems = [];
@@ -198,15 +225,13 @@ if(phone === ""){
         date: new Date().toLocaleString()
     };
 
-    // Save to Local Storage
     let orders = JSON.parse(localStorage.getItem("flameOrders")) || [];
     orders.push(orderData);
     localStorage.setItem("flameOrders", JSON.stringify(orders));
 
-    // WhatsApp Message
     let message = "🔥 Flame On Order 🔥\n\n";
     message += "Order ID: " + orderId + "\n";
-    message += "Customer: " + name + "\n\n";
+    message += "Customer: " + name + "\n";
     message += "Phone: " + phone + "\n\n";
 
     orderItems.forEach(item => {
