@@ -48,6 +48,18 @@ style="padding:8px;width:80%;margin-bottom:10px;border-radius:6px;border:none;">
 <input type="tel" id="customerPhone" placeholder="Enter Your Phone Number" 
 style="padding:8px;width:80%;margin-bottom:10px;border-radius:6px;border:none;">
 </div>
+
+    <br>
+
+<select id="serviceType" style="padding:8px;width:80%;margin-bottom:10px;border-radius:6px;border:none;">
+    <option value="">Select Service</option>
+    <option value="Take Away">Take Away</option>
+    <option value="Dine In">Dine In</option>
+    <option value="Home Delivery">Home Delivery</option>
+</select>
+
+<textarea id="customerAddress" placeholder="Enter Delivery Address with Landmark"
+style="padding:8px;width:80%;margin-bottom:10px;border-radius:6px;border:none;display:none;"></textarea>
     
 <div class="total">
 Total: ₹<span id="total">0</span>
@@ -67,6 +79,16 @@ Total: ₹<span id="total">0</span>
 let cart = JSON.parse(localStorage.getItem("cartData")) || {};
 let totalAmount = 0;
 
+  document.addEventListener("DOMContentLoaded", function(){
+    document.getElementById("serviceType").addEventListener("change", function(){
+        if(this.value === "Home Delivery"){
+            document.getElementById("customerAddress").style.display = "block";
+        } else {
+            document.getElementById("customerAddress").style.display = "none";
+        }
+    });
+});
+    
 const cartDiv = document.getElementById("cartItems");
    
     if(Object.keys(cart).length === 0){
@@ -119,15 +141,29 @@ function checkout(){
 
     let name = document.getElementById("customerName").value;
     let phoneInput = document.getElementById("customerPhone").value;
+    let service = document.getElementById("serviceType").value;
+    let address = document.getElementById("customerAddress").value;
 
-    if(!name || !phoneInput){
-        alert("Please enter your name and phone number");
+    if(!name || !phoneInput || !service){
+        alert("Please fill all required details");
+        return;
+    }
+
+    if(service === "Home Delivery" && !address){
+        alert("Please enter delivery address");
         return;
     }
 
     let message = "🔥 Flame On Order 🔥\n\n";
     message += "Customer Name: " + name + "\n";
-    message += "Customer Phone: " + phoneInput + "\n\n";
+    message += "Customer Phone: " + phoneInput + "\n";
+    message += "Service: " + service + "\n";
+
+    if(service === "Home Delivery"){
+        message += "Address: " + address + "\n";
+    }
+
+    message += "\nOrder Details:\n";
 
     for(let item in cart){
         if(cart[item].qty > 0){
@@ -140,6 +176,10 @@ function checkout(){
     let phone = "919090820969";
 
     let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+    localStorage.removeItem("cartData");
+
+    window.location.href = "confirmation.html";
 
     window.open(url, "_blank");
 }
