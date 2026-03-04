@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order Confirmed - Flame On</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:linear-gradient(135deg,#111,#1c1c1c);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+}
+
+.box{
+    background:#222;
+    padding:40px;
+    border-radius:15px;
+    width:90%;
+    max-width:400px;
+    box-shadow:0 0 20px rgba(255,69,0,0.4);
+    animation:pop 0.6s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(0.7);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+h1{
+    color:#ff4500;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 20px;
+    background:#ff4500;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-size:16px;
+}
+
+button:hover{
+    background:#ff2a00;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>🎉 Order Placed Successfully!</h1>
+    <p>Your order has been sent to WhatsApp.</p>
+    <p>Our team will contact you shortly.</p>
+
+    <button onclick="goHome()">Back to Menu</button>
+</div>
+
+<script>
+function goHome(){
+    window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
