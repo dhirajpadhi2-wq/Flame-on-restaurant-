@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Table Booking - Flame On</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+font-family:Arial;
+background:#111;
+color:white;
+margin:0;
+padding:20px;
+}
+h1{
+text-align:center;
+color:#ff4500;
+}
+.form-box{
+background:#1c1c1c;
+padding:20px;
+border-radius:12px;
+max-width:400px;
+margin:auto;
+}
+input, select{
+width:100%;
+padding:10px;
+margin-bottom:12px;
+border:none;
+border-radius:6px;
+}
+button{
+background:#ff4500;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+border-radius:6px;
+font-size:16px;
+}
+button:hover{
+background:#ff5722;
+}
+</style>
+</head>
+<body>
+
+<h1>🍽️ Book a Table</h1>
+
+<div class="form-box">
+
+<input type="text" id="name" placeholder="Your Name">
+<input type="tel" id="phone" placeholder="Your Phone Number">
+
+<label>Select Date</label>
+<input type="date" id="date">
+
+<label>Select Time</label>
+<input type="time" id="time">
+
+<select id="persons">
+<option value="">Number of Persons</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6+</option>
+</select>
+
+<select id="server">
+<option value="">Select Your Server</option>
+<option>Rahul</option>
+<option>Amit</option>
+<option>Sanjay</option>
+<option>Rakesh</option>
+</select>
+
+<button onclick="bookTable()">Book Now</button>
+
+</div>
+
+<script>
+
+function bookTable(){
+
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
+let date = document.getElementById("date").value;
+let time = document.getElementById("time").value;
+let persons = document.getElementById("persons").value;
+let server = document.getElementById("server").value;
+
+if(!name || !phone || !date || !time || !persons || !server){
+alert("Please fill all details");
+return;
+}
+
+let message = "🍽️ *TABLE BOOKING - Flame On*\n\n";
+message += "Name: " + name + "\n";
+message += "Phone: " + phone + "\n";
+message += "Date: " + date + "\n";
+message += "Time: " + time + "\n";
+message += "Persons: " + persons + "\n";
+message += "Preferred Server: " + server + "\n\n";
+message += "🙏 Thank You For Choosing Flame On!";
+
+let restaurantPhone = "919090820969";
+
+let url = "https://wa.me/" + restaurantPhone + "?text=" + encodeURIComponent(message);
+
+window.open(url, "_blank");
+
+setTimeout(function(){
+window.location.href="confirmation.html";
+},1000);
+
+}
+
+</script>
+
+</body>
+</html>
