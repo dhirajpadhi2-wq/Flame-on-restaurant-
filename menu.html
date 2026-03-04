@@ -84,22 +84,9 @@ transform: translateY(0);
 <div id="menu"></div>
 
 <div class="cart">
-<input type="text" id="customerName" placeholder="Enter Your Name">
-<br>
-
-<input type="tel" id="customerPhone" placeholder="Enter Your Phone Number">
-<br>
-    
 Total: ₹<span id="total">0</span>
 <br><br>
-<button onclick="sendOrder()">Order on WhatsApp</button>
-    
-    <br><br>
-    
-<a href="track.html">
-<button>Track My Orders</button>
-</a>
-    
+<button onclick="goToCart()">Go To Cart</button>
 </div>
 
 <script>
@@ -178,7 +165,39 @@ function calculateTotal(){
     document.getElementById("total").innerText = totalAmount;
 }
 
+function goToCart(){
 
+    if(totalAmount === 0){
+        alert("Please select items first!");
+        return;
+    }
+
+    localStorage.setItem("cartData", JSON.stringify(cart));
+
+    window.location.href = "cart.html";
+}
+
+function calculateTotal(){
+    totalAmount = 0;
+
+    for(let item in cart){
+        totalAmount += cart[item].qty * cart[item].price;
+    }
+
+    document.getElementById("total").innerText = totalAmount;
+}
+
+function goToCart(){
+
+    if(totalAmount === 0){
+        alert("Please select items first!");
+        return;
+    }
+
+    localStorage.setItem("cartData", JSON.stringify(cart));
+
+    window.location.href = "cart.html";
+}
 
 </script>
 
