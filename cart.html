@@ -179,9 +179,13 @@ function checkout(){
 
     localStorage.removeItem("cartData");
 
-    window.location.href = "confirmation.html";
+// First open WhatsApp
+window.open(url, "_blank");
 
-    window.open(url, "_blank");
+// Then go to confirmation page after 1 second
+setTimeout(function(){
+    window.location.href = "confirmation.html";
+}, 1000);
 }
     
 </script>
