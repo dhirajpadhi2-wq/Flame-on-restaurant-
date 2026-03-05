@@ -52,6 +52,34 @@ background:#ff5722;
 <input type="text" id="name" placeholder="Your Name">
 <input type="tel" id="phone" placeholder="Your Phone Number">
 
+  <br><br>
+
+<select id="tableNumber" style="padding:8px;width:80%;margin-bottom:10px;border-radius:6px;border:none;">
+<option value="">Select Table</option>
+
+<option>Table 1</option>
+<option>Table 2</option>
+<option>Table 3</option>
+<option>Table 4</option>
+<option>Table 5</option>
+<option>Table 6</option>
+<option>Table 7</option>
+<option>Table 8</option>
+<option>Table 9</option>
+<option>Table 10</option>
+<option>Table 11</option>
+<option>Table 12</option>
+<option>Table 13</option>
+<option>Table 14</option>
+<option>Table 15</option>
+<option>Table 16</option>
+<option>Table 17</option>
+<option>Table 18</option>
+<option>Table 19</option>
+<option>Table 20</option>
+
+</select>
+  
 <label>Select Date</label>
 <input type="date" id="date">
 
@@ -70,9 +98,9 @@ background:#ff5722;
 
 <select id="server">
 <option value="">Select Your Server</option>
-<option>Rahul</option>
-<option>Amit</option>
-<option>Sanjay</option>
+<option>Chandan</option>
+<option>Sagar</option>
+<option>Pradeep</option>
 <option>Rakesh</option>
 </select>
 
@@ -90,8 +118,9 @@ let date = document.getElementById("date").value;
 let time = document.getElementById("time").value;
 let persons = document.getElementById("persons").value;
 let server = document.getElementById("server").value;
-
-if(!name || !phone || !date || !time || !persons || !server){
+let table = document.getElementById("tableNumber").value;
+  
+  if(!name || !phone || !table || !date || !time || !persons || !server){
 alert("Please fill all details");
 return;
 }
@@ -99,6 +128,7 @@ return;
 let message = "🍽️ *TABLE BOOKING - Flame On*\n\n";
 message += "Name: " + name + "\n";
 message += "Phone: " + phone + "\n";
+  message += "Table: " + table + "\n";
 message += "Date: " + date + "\n";
 message += "Time: " + time + "\n";
 message += "Persons: " + persons + "\n";
